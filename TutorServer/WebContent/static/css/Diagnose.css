@@ -1,0 +1,88 @@
+body,
+ul,
+li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.header {
+	width: 100%;
+	height: 30px;
+	background-color: rgb(238, 238, 238);
+	margin-bottom: 3px;
+}
+
+.header-top-navbar {
+	margin-left: 20px;
+}
+
+.header-top-navbar li {
+	display: inline-block;
+	/* 把块元素变成内联元素 */
+	padding: 0 10px;
+	font-size: 12px;
+	line-height: 30px;
+	/* 与容器的高度一致达到垂直居中 */
+}
+.leftbar{
+	width: 25%;
+	height: 750px;
+	display: inline-block;
+	float: left;
+	margin-top: 8px;
+	border: 1px solid #ddd;
+}
+.patient-search{
+	margin: 20px 0;
+}
+.datalist-title-zhenduan{
+	border-top: 1px solid #ddd;
+	font-weight: 600;
+	height: 30px;
+	width: 90%;
+	line-height: 30px;
+}
+.zhenduan-info-title {
+	font-size: 14px;
+	font-weight: 600;
+	color: rgb(70, 128, 50);
+	padding: 0 25px;
+}
+.leftbar-daizhen-table{
+	height: 200px;
+	width: 90%;
+	overflow: auto;
+}
+.leftbar-yizhen-table{
+	height: 250px;
+	width: 90%;
+	overflow: auto;
+}
+.rightbar{
+	width: 75%;
+	height: 750px;
+	display: inline-block;
+	float: left;
+	margin-top: 8px;
+	border: 1px solid #ddd;
+}
+.rightbar-statebar b,font{
+	font-size: 14px;
+}
+.rightbar-statebar font{
+	color: #4CAE4C;
+}
+.rightbar-header{
+	width: 100%;
+	height: 30px;
+	background-color: rgb(198, 226, 245);
+	margin-bottom: 3px;
+}
+.right-table-info .table tr td{
+	text-align: center;
+	vertical-align: middle;
+}
+.btn{
+	cursor:pointer;
+}

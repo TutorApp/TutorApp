@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<title>家教通APP管理员系统</title>
+		<!-- Bootstrap -->
+		<link href="static/lib/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
+		<style>
+			body{
+				background-image: url(static/img/login_bg.jpg);
+				background-repeat: no-repeat;
+				background-size: 100%
+			}
+			.main-box{
+				width: 400px;
+				background-color: white; 
+				opacity: 0.9;
+				border-radius: 10px;
+				position: absolute;
+				top:50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				padding: 20px 30px;
+			}
+			#icon1{
+				padding-right: 60px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="main-box">
+			<h2 class="text-center">家教通APP管理员系统</h2>
+			<!--  ctrl + k 格式化代码 -->
+			<form class="form-horizontal">
+				<div class="form-group">
+					<label for="code" class="col-sm-2 control-label">账号</label>
+					<div class="col-sm-10">
+						<div class="input-group ">
+							<span class=" input-group-addon" id="basic-addon1">
+							<i class="glyphicon glyphicon-user"></i>
+							</span>
+							<input type="text" id="code" class="form-control" placeholder="请输入账号">
+							<span id="icon" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+							<span id="inputError2Status" class="sr-only">(error)</span>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="pwd" class="col-sm-2 control-label">密码</label>
+					<div class="col-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon">
+								<i class="glyphicon glyphicon-lock"></i>
+							</span>
+							<input id="pwd" type="password" class="form-control" placeholder="请输入密码">
+							<span id="icon1" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+							<span id="inputError2Status" class="sr-only">(error)</span>
+							<span  id="btn-eye" class="input-group-addon">
+								<i class="glyphicon glyphicon-eye-close"></i>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="text-center col-sm-12">
+						
+						<button id="btn-login" type="button" class="btn btn-success">登录</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<script src="static/lib/jquery-1.12.4.js" type="text/javascript" charset="UTF-8"></script>
+		<script src="static/lib/bootstrap-3.3.7-dist/js/bootstrap.js" type="text/javascript" charset="UTF-8"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#code").blur(function(){
+					var code = $(this).val();
+					// alert(code);
+					if('' == code){
+						$(this).parent().parent().parent().addClass("has-error");
+						$(this).parent().parent().parent().removeClass("has-success");
+						$("#icon").addClass("glyphicon-remove");
+						$("#icon").removeClass("glyphicon-ok");
+					}else{
+						$(this).parent().parent().parent().addClass("has-success");
+						$(this).parent().parent().parent().removeClass("has-error");
+						$("#icon").addClass("glyphicon-ok");
+						$("#icon").removeClass("glyphicon-remove");
+					}
+				}); 
+				
+					$("#pwd").blur(function(){
+					var code = $(this).val();
+					// alert(code);
+					if('' == code){
+						$(this).parent().parent().parent().addClass("has-error");
+						$(this).parent().parent().parent().removeClass("has-success");
+						$("#icon1").addClass("glyphicon-remove");
+						$("#icon1").removeClass("glyphicon-ok");
+					}else{
+						$(this).parent().parent().parent().addClass("has-success");
+						$(this).parent().parent().parent().removeClass("has-error");
+						$("#icon1").addClass("glyphicon-ok");
+						$("#icon1").removeClass("glyphicon-remove");
+					}
+				}); 
+				
+				$("#btn-eye").click(function(){
+					var pwd = $("#pwd").attr("type");
+					// alert(pwd);
+					if (pwd == 'password'){
+						$(this).children().addClass("glyphicon-eye-open");
+						$(this).children().removeClass("glyphicon-eye-close");
+						$("#pwd").attr("type","text"); 
+					}else{
+						$(this).children().removeClass("glyphicon-eye-open");
+						$(this).children().addClass("glyphicon-eye-close");
+						$("#pwd").attr("type","password"); 
+					}
+					
+				});
+				$("#btn-login").click(function(){
+					var code = $("#code").val();
+					var pwd = $("#pwd").val();
+					// alert(pwd);
+					if('' == pwd){
+						$("#code").parent().parent().parent().addClass("has-error");
+						$("#code").parent().parent().parent().removeClass("has-success");
+						$("#icon1").addClass("glyphicon-remove");
+						$("#icon1").removeClass("glyphicon-ok");
+					}else{
+						$("#code").parent().parent().parent().addClass("has-success");
+						$("#code").parent().parent().parent().removeClass("has-error");
+						$("#icon1").addClass("glyphicon-ok");
+						$("#icon1").removeClass("glyphicon-remove");
+					}
+					
+					if('' == code){
+						$("#pwd").parent().parent().parent().addClass("has-error");
+						$("#pwd").parent().parent().parent().removeClass("has-success");
+						$("#icon").addClass("glyphicon-remove");
+						$("#icon").removeClass("glyphicon-ok");
+					}else{
+						$("#pwd").parent().parent().parent().addClass("has-success");
+						$("#pwd").parent().parent().parent().removeClass("has-error");
+						$("#icon").addClass("glyphicon-ok");
+						$("#icon").removeClass("glyphicon-remove");
+					}
+					
+				});
+				
+				$("#btn-login").click(function(){
+					var codeName = $("#code").val();
+					var password = $("#pwd").val();
+					$.ajax({
+						url:"/HospitalSystem/login",
+						type:"get",
+						dataType:"JSON",
+						data:{
+							code:codeName,
+							pwd:password
+						},
+						error:function(){
+						},
+						success:function(e){
+							if(e == 'error'){
+								//当登录错误时
+								
+								alert("账号或密码错误！");
+
+								$("#code").parent().parent().parent().addClass("has-error");
+								$("#code").parent().parent().parent().removeClass("has-success");
+								$("#icon").addClass("glyphicon-remove");
+								$("#icon").removeClass("glyphicon-ok");
+								
+								$("#pwd").parent().parent().parent().addClass("has-error");
+								$("#pwd").parent().parent().parent().removeClass("has-success");
+								$("#icon1").addClass("glyphicon-remove");
+								$("#icon1").removeClass("glyphicon-ok");
+								
+							}else{
+								//跳转成功
+								//console.info(e.id);
+								//如果返回式JSON格式的字符串则用eval（）函数转换
+								//var data = eval("("+e+")");
+								window.location.href="zhenduan.html?id="+e.id;
+							}
+							//在控制台输出
+						}
+					});
+				});
+			});
+		</script>
+	</body>
+</html>

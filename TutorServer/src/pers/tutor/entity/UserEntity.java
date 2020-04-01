@@ -4,13 +4,20 @@ package pers.tutor.entity;
 * @version 创建时间		2020年3月20日 下午2:17:49
 * 教师实体
 */
-public class TeacherEntity {
+public class UserEntity {
 	
 	private int id;
 	private String username;
 	private String password;
+	private int type;
 	
 	
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
+	}
 	public int getId() {
 		return id;
 	}
@@ -29,6 +36,7 @@ public class TeacherEntity {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 
 	
 }

@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>家教通APP管理员系统</title>
+<link href="static/lib/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+	header{
+		background-color: #09F;
+		height: 50px;
+	}
+	
+	header div{
+		text-align: center;
+		height: 50px;
+		font-size: 40px;
+	}
+	
+	.first{
+		height: 45px;
+		font-size: 20px;
+		margin-top: 10px;
+	}
+	
+	.select1{
+		width:110px;
+		height:30px;
+	}
+	
+	.datalist-title {
+		margin-top:5px;
+		border-top: 1px solid #ddd;
+		font-weight: 600;
+		height: 30px;
+		line-height: 30px;
+	}
+	
+	.table-title {
+		font-size: 14px;
+		font-weight: 600;
+		color: rgb(70, 128, 50);
+		padding: 0 25px;
+		margin-top:10px;
+	}
+	
+	.refresh{
+		float:right;
+	}
+</style>
+</head>
+
+<body>
+	<header>
+    	<div>
+        	家教通APP管理员系统
+        </div>
+    </header>
+    
+    <div class="first">
+		<span>管理员id</span> <input type="text" id="guahao_invno" readonly>
+	</div>
+    <div>
+    	<select class="select1">
+			<option>教师信息管理</option>
+			<option>学生信息管理</option>
+		</select>
+    </div>
+    <div>
+    	<div class="datalist-title">
+			<span class="table-title">信息列表</span> 
+			<span class="btn refresh"><i class="glyphicon glyphicon-refresh"></i>刷新</span>
+		</div>
+        		<table class="table table-bordered">
+			<tr>
+				<th></th>
+				<th>id</th>
+				<th>用户名</th>
+				
+			</tr>
+			<tbody id="showData">
+
+
+			</tbody>
+		</table>
+    </div>
+</body>
+</html>

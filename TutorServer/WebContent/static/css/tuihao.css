@@ -1,0 +1,202 @@
+body,
+ul,
+li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.header {
+	width: 100%;
+	height: 30px;
+	background-color: rgb(238, 238, 238);
+}
+
+.header-top-navbar {
+	margin-left: 20px;
+}
+
+.header-top-navbar li {
+	display: inline-block;
+	/* 把块元素变成内联元素 */
+	padding: 0 10px;
+	font-size: 12px;
+	line-height: 30px;
+	/* 与容器的高度一致达到垂直居中 */
+}
+
+.tuihao-input {
+	height: 45px;
+	font-size: 12px;
+}
+
+.tuihao-input span {
+	line-height: 45px;
+	/* 与容器的高度一致达到垂直居中 */
+}
+
+.tuihao-info {
+	display: flex;
+	background-color: rgb(234, 241, 245);
+	height: 48px;
+	line-height: 48px;
+}
+
+.tuihao-info-title {
+	font-size: 14px;
+	font-weight: 600;
+	color: rgb(70, 128, 50);
+	padding: 0 25px;
+}
+
+.tuihao-info div:nth-child(1) {
+	width: 40%;
+}
+
+.tuihao-info div:nth-child(2) {
+	width: 60%;
+	text-align: right;
+}
+
+.tuihao-info-navbar li {
+	display: inline-block;
+	padding: 0 10px;
+}
+
+.tuihao-info-main {
+	background-color: rgb(217, 234, 243);
+	padding-left: 8px;
+}
+
+.tuihao-info-main .select2 {
+	width: auto;
+	height:26px;
+}
+
+/* .info-input{
+				width: 1200px;
+			} */
+
+.info-input-mainbox li {
+	display: inline-block;
+	margin: 6px 20px;
+}
+
+.info-input-mainbox li .in-title {
+	display: inline-block;
+	width: 70px;
+	text-align: left;
+}
+
+.info-input-mainbox input {
+	width: 160px;
+	height: 27px;
+	border: none;
+	border-bottom: 1px solid rgb(51, 122, 180);
+}
+
+.info-input-mainbox .input1 {
+	width: 100px;
+}
+
+.info-input-mainbox .select1 {
+	width: 57px;
+}
+
+.buju {
+	width: 50%;
+	height: 380px;
+	display: inline-block;
+	float: left;
+	border-left: 1px solid #ddd;
+}
+
+.main-datalist1 {
+	height: 370px;
+	overflow: auto;
+	display: inline-block;
+	float: left;
+	width: 100%;
+}
+
+.main-datalist2-info {
+	height: 190px;
+	width: 100%;
+	overflow: auto;
+	display: inline-block;
+	float: left;
+}
+
+.main-datalist2-detail {
+	height: 180px;
+	width: 100%;
+	display: inline-block;
+	float: left;
+}
+
+.detail-scorll {
+	width: 100%;
+	display: inline-block;
+	float: left;
+	overflow: auto;
+}
+
+.main-datalist1 .datalist-title {
+	border-top: 1px solid #ddd;
+	font-weight: 600;
+	background-color: rgb(234, 241, 245);
+	height: 30px;
+	line-height: 30px;
+	overflow: aoto;
+}
+
+.datalist-title-tuihao {
+	border-top: 1px solid #ddd;
+	font-weight: 600;
+	background-color: rgb(234, 241, 245);
+	height: 30px;
+	line-height: 30px;
+}
+
+.main-datalist1 .datalist-title span:nth-child(2) {
+	float: right;
+	padding-right: 10px;
+}
+
+.main-datalist2-info .datalist-title {
+	border-top: 1px solid #ddd;
+	font-weight: 600;
+	background-color: rgb(234, 241, 245);
+	height: 30px;
+	line-height: 30px;
+
+}
+
+.main-datalist2-detail .datalist-title {
+	margin-top: 10px;
+	border-top: 1px solid #ddd;
+	font-weight: 600;
+	background-color: rgb(234, 241, 245);
+	height: 30px;
+	line-height: 30px;
+}
+
+.main-datalist1 table tr:nth-child(even) {
+	background: rgb(249, 249, 249);
+}
+
+.table-bordered th {
+	font-weight: bold;
+	text-align: center;
+}
+
+.table-bordered td {
+	text-align: center;
+}
+
+.paging {
+	text-align: center;
+}
+.btn{
+	cursor:pointer;
+}

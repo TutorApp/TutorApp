@@ -9,18 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import pers.tutor.entity.TeacherEntity;
-import pers.tutor.service.TeacherRegisterService;
-
+import pers.tutor.entity.UserEntity;
+import pers.tutor.service.RegisterService;
 
 /**
  * @author YangSen
  * @author 作者 E-mail:	ysen_top@163.com
- * @version 创建时间		2020年3月20日 下午7:22:07
-    * 类说明
+ * @version 创建时间		2020年3月20日 下午4:49:48
+    * 接受学生登录请求
  */
-@WebServlet("/TeacherRegister")
-public class TeacherRegisterServlet extends HttpServlet {
+@WebServlet("/Register")
+public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 
@@ -28,14 +27,17 @@ public class TeacherRegisterServlet extends HttpServlet {
 		
 		String username = request.getParameter("username");//获取前端参数
 		String password = request.getParameter("password");//获取前端参数
+		String  usertype = request.getParameter("type");//获取前端参数
+		int type = Integer.parseInt(usertype);
 		
 		//装载数据
-		TeacherEntity teacherEntity = new TeacherEntity();
-		TeacherRegisterService teacherRegister_service = new TeacherRegisterService();
-		teacherEntity.setUsername(username);
-		teacherEntity.setPassword(password);
-		int result = teacherRegister_service.register(teacherEntity);
+		UserEntity studentEntity = new UserEntity();
+		RegisterService studentRegister_service = new RegisterService();
+		studentEntity.setUsername(username);
+		studentEntity.setPassword(password);
+		studentEntity.setType(type);
 		
+		int result = studentRegister_service.register(studentEntity);
 		PrintWriter out = response.getWriter();
 		if(result == 0) {
 			out.write("successful");
