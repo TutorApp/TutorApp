@@ -16,7 +16,7 @@ import pers.tutor.service.RegisterService;
  * @author YangSen
  * @author 作者 E-mail:	ysen_top@163.com
  * @version 创建时间		2020年3月20日 下午4:49:48
-    * 接受登录请求
+    * 类说明	用户注册表示层
  */
 @WebServlet("/Register")
 public class RegisterServlet extends HttpServlet {

@@ -13,7 +13,7 @@ import pers.tutor.util.DBUtil;
 /**
 * @author 作者 E-mail:	ysen_top@163.com
 * @version 创建时间		2020年3月21日 下午5:10:30
-* 类说明 需求列表
+* 类说明 学生用户获取教学信息数据访问层
 */
 public class DemandListDao {
 
@@ -49,7 +49,6 @@ public class DemandListDao {
 			}
 			conn.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

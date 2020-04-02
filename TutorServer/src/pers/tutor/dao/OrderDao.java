@@ -12,7 +12,7 @@ import pers.tutor.util.DBUtil;
 /**
 * @author 作者 E-mail:	ysen_top@163.com
 * @version 创建时间		2020年3月21日 下午5:10:30
-* 类说明
+* 类说明	学生用户下单数据访问层
 */
 public class OrderDao {
 
@@ -20,14 +20,12 @@ public class OrderDao {
 		
 		Connection connection = DBUtil.getConnection();//创建连接
 		
-		String sql = "SELECT * from user WHERE username=? AND type=?";//sql增加语句
+		String sql = "SELECT * from user WHERE username=?";//sql查询语句
 		//创建数据库操作
-		//userEntity userEntity = null;
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			//传递参数
 			preparedStatement.setString(1,username);
-			preparedStatement.setInt(2,1);
 			//执行SQL
 			ResultSet resultSet = preparedStatement.executeQuery();
 			int result = -1;
@@ -45,9 +43,9 @@ public class OrderDao {
 	public int order(OrderModel orderModel,DemandEntity demandEntity) {
 		
 		Connection connection = DBUtil.getConnection();//创建连接
-		String sql = "INSERT`order` (`subject`, `grade`,`name`,`teacher_phone`, `teacher_id`,`state`, `salary`,`teacher_address`,`other`," + 
-				"`start_time`,`end_time`,`date`,`student_id`,`student_phone`,`student_address`)VALUES (?,?, ?,?, ?, ?,?, ?, ?,?, ?, ?,?, ?, ?)";
-		String sql1 = "UPDATE demand SET state = 2 WHERE id = ?";
+		String sql = "INSERT`order` (`subject`, `grade`,`teacher_name`,`teacher_phone`, `teacher_id`,`state`, `salary`,`teacher_address`,`other`," + 
+				"`start_time`,`end_time`,`date`,`student_id`,`student_phone`,`student_address`,`student_name`)VALUES (?,?,?, ?,?, ?, ?,?, ?, ?,?, ?, ?,?, ?, ?)";
+		String sql1 = "UPDATE demand SET state = 2 WHERE id = ?";//SQL增加语句
 		
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -58,7 +56,7 @@ public class OrderDao {
 			preparedStatement.setString(3, demandEntity.getName());
 			preparedStatement.setString(4, demandEntity.getTeacher_phone());
 			preparedStatement.setInt(5, demandEntity.getTeacher_id());
-			preparedStatement.setInt(6, 1);
+			preparedStatement.setInt(6, 2);
 			preparedStatement.setInt(7, demandEntity.getSalary());
 			preparedStatement.setString(8, demandEntity.getTeacher_address());
 			preparedStatement.setString(9, demandEntity.getOther());
@@ -68,12 +66,13 @@ public class OrderDao {
 			preparedStatement.setInt(13, orderModel.getStudent_id());
 			preparedStatement.setString(14,orderModel.getStudent_phone());
 			preparedStatement.setString(15, orderModel.getStudent_address());
+			preparedStatement.setString(16,orderModel.getStudent_name());
 			
 			
 			int result = preparedStatement.executeUpdate();
 			int re = pre.executeUpdate();
 			connection.close();
-			if(result == 1 && re == 1) {
+			if(result == 1 && re != 0) {
 				return 0;
 			}else {
 				return -1;
@@ -87,7 +86,7 @@ public class OrderDao {
 	public DemandEntity demandInfo(int id) {
 		Connection connection = DBUtil.getConnection();//创建连接
 		
-		String sql = "SELECT * from demand WHERE id=?";//sql增加语句
+		String sql = "SELECT * from demand WHERE id=?";//sql查询语句
 		//创建数据库操作
 		DemandEntity demandEntity = new DemandEntity();
 

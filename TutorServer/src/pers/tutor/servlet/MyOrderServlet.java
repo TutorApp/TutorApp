@@ -11,31 +11,32 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.fastjson.JSONObject;
-import pers.tutor.entity.DemandEntity;
-import pers.tutor.service.DemandListService;
+
+import pers.tutor.entity.OrderEntity;
+import pers.tutor.service.MyOrderService;
 
 
 /**
  * @author YangSen
  * @author 作者 E-mail:	ysen_top@163.com
- * @version 创建时间		2020年4月1日 下午3:42:22
-    * 类说明 	查看需求列表表示层
+ * @version 创建时间		2020年4月2日 下午3:33:31
+    * 类说明   	查看订单表示层
  */
-@WebServlet("/DemandList")
-public class DemandListServlet extends HttpServlet {
+@WebServlet("/MyOrder")
+public class MyOrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		String username = request.getParameter("username");
 		
-		DemandListService demandListService = new DemandListService();
-
-		List<DemandEntity> list = demandListService.demandList();
-		
+		MyOrderService myOrderService = new MyOrderService();
+		int id = myOrderService.getUserId(username);
+		List<OrderEntity> orderList = myOrderService.getMyOrder(id);
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
-		if(list.size() != 0) {
-			String jsonstr = JSONObject.toJSONString(list);
+		if(orderList.size() != 0) {
+			String jsonstr = JSONObject.toJSONString(orderList);
 			out.write(jsonstr);
 		}else {
 			out.write("failed");
@@ -43,12 +44,9 @@ public class DemandListServlet extends HttpServlet {
 		
 		out.flush();
 		out.close();
-		
+
 	}
-
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		doGet(request, response);
 	}
 

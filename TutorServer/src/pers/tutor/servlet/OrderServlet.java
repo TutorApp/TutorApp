@@ -20,7 +20,7 @@ import pers.tutor.service.OrderService;
  * @author YangSen
  * @author 作者 E-mail:	ysen_top@163.com
  * @version 创建时间		2020年3月21日 下午5:07:34
-    * 类说明	教师用户发布教学信息
+    * 类说明	教师用户发布教学信息表示层
  */
 
 @WebServlet("/Order")
@@ -41,7 +41,6 @@ public class OrderServlet extends HttpServlet {
 		{
 			e.printStackTrace();
 		}
-		
 		JSONObject json = new JSONObject();
 		json = JSONObject.parseObject(jb.toString());
 		
@@ -50,13 +49,15 @@ public class OrderServlet extends HttpServlet {
 		DemandEntity demandEntity = new DemandEntity();
 		demandEntity = orderService.demandInfo(json.getIntValue("id"));
 		PrintWriter out = response.getWriter();
-		if(demandEntity.getState() == 2) {
+		int student_id = orderService.getStudentId(json.getString("username"));
+		if(demandEntity.getState() == 2 || student_id == -1) {
 			out.write("error");
 		}else {
 			orderModel.setId(json.getInteger("id"));
-			orderModel.setStudent_id(orderService.getStudentId(json.getString("username")));
+			orderModel.setStudent_id(student_id);
 			orderModel.setStudent_address(json.getString("student_address"));
 			orderModel.setStudent_phone(json.getString("student_phone"));
+			orderModel.setStudent_name(json.getString("student_name"));
 			
 			int result = orderService.order(orderModel,demandEntity);
 			

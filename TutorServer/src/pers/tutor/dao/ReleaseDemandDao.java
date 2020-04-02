@@ -11,14 +11,14 @@ import pers.tutor.util.DBUtil;
 /**
 * @author 作者 E-mail:	ysen_top@163.com
 * @version 创建时间		2020年3月21日 下午5:10:30
-* 类说明
+* 类说明 教师用户发布数据访问层
 */
 public class ReleaseDemandDao {
 
 	public int release(DemandEntity demandEntity) {
 		Connection connection = DBUtil.getConnection();//创建连接
 		String sql = "INSERT`demand` (`subject`, `grade`,`name`,`teacher_phone`, `teacher_id`,`state`, `salary`,`teacher_address`,`other`, `start_time`,`end_time`,`date`) VALUES (?,?, ?,?, ?, ?,?, ?, ?,?, ?, ?)";
-		
+		//SQL增加语句
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, demandEntity.getSubject());
@@ -51,9 +51,8 @@ public class ReleaseDemandDao {
 	public int getTeacherId(String username) {
 		Connection connection = DBUtil.getConnection();//创建连接
 		
-		String sql = "SELECT * from user WHERE username=? AND type=?";//sql增加语句
+		String sql = "SELECT * from user WHERE username=? AND type=?";//sql查询语句
 		//创建数据库操作
-		//userEntity userEntity = null;
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			//传递参数

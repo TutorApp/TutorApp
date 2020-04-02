@@ -21,7 +21,7 @@ import pers.tutor.service.ReleaseDemandService;
  * @author YangSen
  * @author 作者 E-mail:	ysen_top@163.com
  * @version 创建时间		2020年3月21日 下午5:07:34
-    * 类说明	教师用户发布教学信息
+    * 类说明	教师用户发布教学信息表示层
  */
 @WebServlet("/ReleaseDemand")
 public class ReleaseDemandServlet extends HttpServlet {
@@ -45,28 +45,31 @@ public class ReleaseDemandServlet extends HttpServlet {
 		}
 		JSONObject json = new JSONObject();
 		json = JSONObject.parseObject(jb.toString());
-		System.out.println(json);
 		
 		ReleaseDemandService releaseDemandService = new ReleaseDemandService();
-		
-		
-		DemandEntity demandEntity = new DemandEntity();
-		demandEntity.setGrade(json.getString("grade"));
-		demandEntity.setSubject(json.getString("subject"));
-		demandEntity.setDate(json.getString("date"));
-		demandEntity.setStart_time(json.getString("start_time"));
-		demandEntity.setEnd_time(json.getString("end_time"));
-		demandEntity.setSalary(Integer.parseInt(json.getString("salary")));
-		demandEntity.setTeacher_address(json.getString("teacher_address"));
-		demandEntity.setName(json.getString("name"));	
-		demandEntity.setTeacher_phone(json.getString("teacher_phone"));
-		demandEntity.setOther(json.getString("other"));
-		demandEntity.setTeacher_id(releaseDemandService.getTeacherId(json.getString("username")));
-
-		int result = releaseDemandService.release(demandEntity);
+		int teacher_id = releaseDemandService.getTeacherId(json.getString("username"));
 		PrintWriter out = response.getWriter();
-		if(result == 0) {
-			out.write("successful");
+		if(teacher_id != -1) {
+		
+			DemandEntity demandEntity = new DemandEntity();
+			demandEntity.setGrade(json.getString("grade"));
+			demandEntity.setSubject(json.getString("subject"));
+			demandEntity.setDate(json.getString("date"));
+			demandEntity.setStart_time(json.getString("start_time"));
+			demandEntity.setEnd_time(json.getString("end_time"));
+			demandEntity.setSalary(Integer.parseInt(json.getString("salary")));
+			demandEntity.setTeacher_address(json.getString("teacher_address"));
+			demandEntity.setName(json.getString("name"));	
+			demandEntity.setTeacher_phone(json.getString("teacher_phone"));
+			demandEntity.setOther(json.getString("other"));
+			demandEntity.setTeacher_id(teacher_id);
+	
+			int result = releaseDemandService.release(demandEntity);
+			if(result == 0) {
+				out.write("successful");
+			}else {
+				out.write("failed");
+			}
 		}else {
 			out.write("failed");
 		}

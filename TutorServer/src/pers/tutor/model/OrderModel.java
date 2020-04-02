@@ -2,13 +2,21 @@ package pers.tutor.model;
 /**
 * @author 作者 E-mail:	ysen_top@163.com
 * @version 创建时间		2020年4月1日 下午9:51:53
-* 类说明
+* 类说明	下单模型
 */
 public class OrderModel {
 	private int id;
 	private String student_phone;
 	private String student_address;
 	private int student_id;
+	private String student_name;
+	
+	public String getStudent_name() {
+		return student_name;
+	}
+	public void setStudent_name(String student_name) {
+		this.student_name = student_name;
+	}
 	public int getId() {
 		return id;
 	}

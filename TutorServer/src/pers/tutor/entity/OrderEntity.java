@@ -2,13 +2,14 @@ package pers.tutor.entity;
 /**
 * @author 作者 E-mail:	ysen_top@163.com
 * @version 创建时间		2020年3月21日 下午5:10:11
-* 类说明
+* 类说明	订单实体
 */
 public class OrderEntity {
 	private int id;
 	private String subject;
 	private String grade;
-	private String name;
+	private String teacher_name;
+	private String student_name;
 	private String teacher_phone;
 	private String student_phone;
 	private int teacher_id;
@@ -41,11 +42,17 @@ public class OrderEntity {
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
-	public String getName() {
-		return name;
+	public String getTeacher_name() {
+		return teacher_name;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setTeacher_name(String teacher_name) {
+		this.teacher_name = teacher_name;
+	}
+	public String getStudent_name() {
+		return student_name;
+	}
+	public void setStudent_name(String student_name) {
+		this.student_name = student_name;
 	}
 	public String getTeacher_phone() {
 		return teacher_phone;

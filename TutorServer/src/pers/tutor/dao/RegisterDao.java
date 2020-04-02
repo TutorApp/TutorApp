@@ -12,7 +12,7 @@ import pers.tutor.util.DBUtil;
  * @author YangSen
  * @author 作者 E-mail:	ysen_top@163.com
  * @version 创建时间		2020年3月20日 下午7:09:27
-    * 类说明
+    * 类说明	用户注册数据访问层
  */
 public class RegisterDao {
 
@@ -20,7 +20,7 @@ public class RegisterDao {
 		Connection connection = DBUtil.getConnection();//创建连接
 		
 		//检查用户名是否已存在
-		String sql1 = "SELECT * from user WHERE username=? AND type=?";
+		String sql1 = "SELECT * from user WHERE username=? AND type=?";//sql查询语句
 		try {
 			PreparedStatement preparedStatement1 = connection.prepareStatement(sql1);
 			//传递参数
@@ -43,7 +43,6 @@ public class RegisterDao {
 		
 		String sql = "INSERT`user` (`username`, `password`,`type`) VALUES (?, ?, ?)";//sql增加语句
 		//创建数据库操作
-		//userEntity userEntity = null;
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			//传递参数
@@ -51,8 +50,6 @@ public class RegisterDao {
 			preparedStatement.setString(2,userEntity.getPassword());
 			preparedStatement.setInt(3,userEntity.getType());
 			//执行SQL
-			int resultSet = preparedStatement.executeUpdate();
-			System.out.print(resultSet);
 		} catch(SQLException e) {
 			e.printStackTrace();
 			return 1;

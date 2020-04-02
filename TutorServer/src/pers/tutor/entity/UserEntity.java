@@ -2,7 +2,7 @@ package pers.tutor.entity;
 /**
 * @author 作者 E-mail:	ysen_top@163.com
 * @version 创建时间		2020年3月20日 下午2:17:49
-* 教师实体
+* 教师实体	用户实体
 */
 public class UserEntity {
 	

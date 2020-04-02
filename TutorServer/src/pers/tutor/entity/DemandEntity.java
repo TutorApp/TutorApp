@@ -2,7 +2,7 @@ package pers.tutor.entity;
 /**
 * @author 作者 E-mail:	ysen_top@163.com
 * @version 创建时间		2020年3月21日 下午5:10:11
-* 类说明
+* 类说明	教学信息实体
 */
 public class DemandEntity {
 	private int id;
