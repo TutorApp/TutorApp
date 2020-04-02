@@ -4,16 +4,19 @@ package pers.tutor.entity;
 * @version 创建时间		2020年3月21日 下午5:10:11
 * 类说明
 */
-public class DemandEntity {
+public class OrderEntity {
 	private int id;
 	private String subject;
 	private String grade;
 	private String name;
 	private String teacher_phone;
+	private String student_phone;
 	private int teacher_id;
+	private int student_id;
 	private int state;
 	private int salary;
 	private String teacher_address;
+	private String student_address;
 	private String other;
 	private String start_time;
 	private String end_time;
@@ -50,7 +53,12 @@ public class DemandEntity {
 	public void setTeacher_phone(String teacher_phone) {
 		this.teacher_phone = teacher_phone;
 	}
-
+	public String getStudent_phone() {
+		return student_phone;
+	}
+	public void setStudent_phone(String student_phone) {
+		this.student_phone = student_phone;
+	}
 	public int getTeacher_id() {
 		return teacher_id;
 	}
@@ -75,7 +83,12 @@ public class DemandEntity {
 	public void setTeacher_address(String teacher_address) {
 		this.teacher_address = teacher_address;
 	}
-
+	public String getStudent_address() {
+		return student_address;
+	}
+	public void setStudent_address(String student_address) {
+		this.student_address = student_address;
+	}
 	public String getOther() {
 		return other;
 	}
@@ -88,7 +101,12 @@ public class DemandEntity {
 	public void setDate(String date) {
 		this.date = date;
 	}
-
+	public int getStudent_id() {
+		return student_id;
+	}
+	public void setStudent_id(int student_id) {
+		this.student_id = student_id;
+	}
 	public String getStart_time() {
 		return start_time;
 	}

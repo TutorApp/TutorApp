@@ -2,7 +2,6 @@ package pers.tutor.servlet;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
@@ -20,7 +19,7 @@ import pers.tutor.service.LoginService;
  * @author YangSen
  * @author 作者 E-mail:	ysen_top@163.com
  * @version 创建时间		2020年3月20日 下午2:07:19
-    * 接受教师登录请求
+    * 接受登录请求
  */
 
 @WebServlet("/Login")
@@ -36,7 +35,6 @@ public class LoginServlet extends HttpServlet {
 		
 		String username = request.getParameter("username");//获取前端参数
 		String password = request.getParameter("password");//获取前端参数
-		System.out.print("GET");
 		LoginService loginService = new LoginService();
 		PrintWriter out = response.getWriter();
 		if(loginService.login(username,password) == 0) {

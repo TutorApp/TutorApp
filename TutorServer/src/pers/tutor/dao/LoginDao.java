@@ -33,6 +33,7 @@ public class LoginDao {
 				userEntity.setId(resultSet.getInt("id"));
 				userEntity.setUsername(resultSet.getString("username"));
 			}
+			connection.close();
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}

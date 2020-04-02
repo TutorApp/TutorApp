@@ -17,14 +17,14 @@ public class ReleaseDemandDao {
 
 	public int release(DemandEntity demandEntity) {
 		Connection connection = DBUtil.getConnection();//创建连接
-		String sql = "INSERT`demand` (`subject`, `grade`,`name`,`phone`, `teacher_id`,`state`, `salary`,`teacher_address`,`other`, `start_time`,`end_time`,`date`) VALUES (?,?, ?,?, ?, ?,?, ?, ?,?, ?, ?)";
+		String sql = "INSERT`demand` (`subject`, `grade`,`name`,`teacher_phone`, `teacher_id`,`state`, `salary`,`teacher_address`,`other`, `start_time`,`end_time`,`date`) VALUES (?,?, ?,?, ?, ?,?, ?, ?,?, ?, ?)";
 		
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, demandEntity.getSubject());
 			preparedStatement.setString(2,demandEntity.getGrade());
 			preparedStatement.setString(3, demandEntity.getName());
-			preparedStatement.setString(4, demandEntity.getPhone());
+			preparedStatement.setString(4, demandEntity.getTeacher_phone());
 			preparedStatement.setInt(5, demandEntity.getTeacher_id());
 			preparedStatement.setInt(6, 0);
 			preparedStatement.setInt(7, demandEntity.getSalary());
@@ -35,6 +35,7 @@ public class ReleaseDemandDao {
 			preparedStatement.setString(12, demandEntity.getDate());
 			
 			int result = preparedStatement.executeUpdate();
+			connection.close();
 			if(result == 1) {
 				return 0;
 			}else {
@@ -60,9 +61,12 @@ public class ReleaseDemandDao {
 			preparedStatement.setInt(2,0);
 			//执行SQL
 			ResultSet resultSet = preparedStatement.executeQuery();
+			int result = -1;
 			while(resultSet.next()) {
-				return resultSet.getInt("id");
+				result = resultSet.getInt("id");
 			}
+			connection.close();
+			return result;
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}

@@ -12,25 +12,23 @@ import javax.servlet.http.HttpServletResponse;
 import com.alibaba.fastjson.JSONObject;
 
 import pers.tutor.entity.DemandEntity;
-import pers.tutor.service.ReleaseDemandService;
+import pers.tutor.model.OrderModel;
+import pers.tutor.service.OrderService;
 
-/**
- * Servlet implementation class ReleaseOrderServlet
- */
+
 /**
  * @author YangSen
  * @author 作者 E-mail:	ysen_top@163.com
  * @version 创建时间		2020年3月21日 下午5:07:34
     * 类说明	教师用户发布教学信息
  */
-@WebServlet("/ReleaseDemand")
-public class ReleaseDemandServlet extends HttpServlet {
+
+@WebServlet("/Order")
+public class OrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("application/json;charset=UTF-8");
 		StringBuffer jb = new StringBuffer();
 		String line = null;
 		try
@@ -43,32 +41,30 @@ public class ReleaseDemandServlet extends HttpServlet {
 		{
 			e.printStackTrace();
 		}
+		
 		JSONObject json = new JSONObject();
 		json = JSONObject.parseObject(jb.toString());
-		System.out.println(json);
 		
-		ReleaseDemandService releaseDemandService = new ReleaseDemandService();
-		
-		
+		OrderService orderService = new OrderService();
+		OrderModel orderModel = new OrderModel();
 		DemandEntity demandEntity = new DemandEntity();
-		demandEntity.setGrade(json.getString("grade"));
-		demandEntity.setSubject(json.getString("subject"));
-		demandEntity.setDate(json.getString("date"));
-		demandEntity.setStart_time(json.getString("start_time"));
-		demandEntity.setEnd_time(json.getString("end_time"));
-		demandEntity.setSalary(Integer.parseInt(json.getString("salary")));
-		demandEntity.setTeacher_address(json.getString("teacher_address"));
-		demandEntity.setName(json.getString("name"));	
-		demandEntity.setTeacher_phone(json.getString("teacher_phone"));
-		demandEntity.setOther(json.getString("other"));
-		demandEntity.setTeacher_id(releaseDemandService.getTeacherId(json.getString("username")));
-
-		int result = releaseDemandService.release(demandEntity);
+		demandEntity = orderService.demandInfo(json.getIntValue("id"));
 		PrintWriter out = response.getWriter();
-		if(result == 0) {
-			out.write("successful");
+		if(demandEntity.getState() == 2) {
+			out.write("error");
 		}else {
-			out.write("failed");
+			orderModel.setId(json.getInteger("id"));
+			orderModel.setStudent_id(orderService.getStudentId(json.getString("username")));
+			orderModel.setStudent_address(json.getString("student_address"));
+			orderModel.setStudent_phone(json.getString("student_phone"));
+			
+			int result = orderService.order(orderModel,demandEntity);
+			
+			if(result == 0) {
+				out.write("successful");
+			}else {
+				out.write("failed");
+			}
 		}
 		
 		out.flush();

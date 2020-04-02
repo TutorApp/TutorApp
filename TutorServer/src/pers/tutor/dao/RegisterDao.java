@@ -20,25 +20,27 @@ public class RegisterDao {
 		Connection connection = DBUtil.getConnection();//创建连接
 		
 		//检查用户名是否已存在
-				String sql1 = "SELECT * from user WHERE username=? AND type=?";
-				try {
-					PreparedStatement preparedStatement1 = connection.prepareStatement(sql1);
-					//传递参数
-					preparedStatement1.setString(1,userEntity.getUsername());
-					preparedStatement1.setInt(2,userEntity.getType());
-					//执行SQL
-					ResultSet resultSet = preparedStatement1.executeQuery();
-					UserEntity userEn = null;
-					if(resultSet.next()) {
-						userEn = new UserEntity();
-						userEn.setUsername(resultSet.getString("username"));
-					}
-					if(userEn != null) {
-						return 2;
-					}
-				} catch(SQLException e) {
-					e.printStackTrace();
-				}
+		String sql1 = "SELECT * from user WHERE username=? AND type=?";
+		try {
+			PreparedStatement preparedStatement1 = connection.prepareStatement(sql1);
+			//传递参数
+			preparedStatement1.setString(1,userEntity.getUsername());
+			preparedStatement1.setInt(2,userEntity.getType());
+			//执行SQL
+			ResultSet resultSet = preparedStatement1.executeQuery();
+			UserEntity userEn = null;
+			if(resultSet.next()) {
+				userEn = new UserEntity();
+				userEn.setUsername(resultSet.getString("username"));
+			}
+			if(userEn != null) {
+				connection.close();
+				return 2;
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
 		String sql = "INSERT`user` (`username`, `password`,`type`) VALUES (?, ?, ?)";//sql增加语句
 		//创建数据库操作
 		//userEntity userEntity = null;
@@ -54,6 +56,13 @@ public class RegisterDao {
 		} catch(SQLException e) {
 			e.printStackTrace();
 			return 1;
+		}
+		
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return 0;
 	}
