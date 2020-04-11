@@ -21,7 +21,7 @@ public class DemandListDao {
 		//1、创建连接
 		Connection conn = DBUtil.getConnection();
 		//创建数据库操作
-		String sql = "SELECT * FROM demand WHERE 'state' = 0 OR 'state' = 1";
+		String sql = "SELECT * FROM demand WHERE state != 2";
 		DemandEntity demandEntity = null;
 		List<DemandEntity> list = new ArrayList<>();
 		try {

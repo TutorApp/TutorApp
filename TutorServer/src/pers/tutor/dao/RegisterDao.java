@@ -18,14 +18,13 @@ public class RegisterDao {
 
 	public int register(UserEntity userEntity) {
 		Connection connection = DBUtil.getConnection();//创建连接
-		
+		int result = -1;
 		//检查用户名是否已存在
-		String sql1 = "SELECT * from user WHERE username=? AND type=?";//sql查询语句
+		String sql1 = "SELECT * from user WHERE username=?";//sql查询语句
 		try {
 			PreparedStatement preparedStatement1 = connection.prepareStatement(sql1);
 			//传递参数
 			preparedStatement1.setString(1,userEntity.getUsername());
-			preparedStatement1.setInt(2,userEntity.getType());
 			//执行SQL
 			ResultSet resultSet = preparedStatement1.executeQuery();
 			UserEntity userEn = null;
@@ -35,7 +34,7 @@ public class RegisterDao {
 			}
 			if(userEn != null) {
 				connection.close();
-				return 2;
+				return -2;
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -50,9 +49,11 @@ public class RegisterDao {
 			preparedStatement.setString(2,userEntity.getPassword());
 			preparedStatement.setInt(3,userEntity.getType());
 			//执行SQL
+			result = preparedStatement.executeUpdate();
+			System.out.println(result);
 		} catch(SQLException e) {
 			e.printStackTrace();
-			return 1;
+			return -1;
 		}
 		
 		try {
@@ -61,7 +62,7 @@ public class RegisterDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return 0;
+		return result;
 	}
 
 }

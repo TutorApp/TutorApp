@@ -9,32 +9,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import pers.tutor.service.LoginService;
-
+import pers.tutor.service.AdministratorLoginService;
 
 /**
  * @author YangSen
  * @author 作者 E-mail:	ysen_top@163.com
- * @version 创建时间		2020年3月20日 下午2:07:19
-    * 类说明	用户登录系统表示层
+ * @version 创建时间		2020年4月5日 下午3:46:12
+    * 类说明	管理员登录表示层
  */
-
-@WebServlet("/Login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/AdministratorLogin")
+public class AdministratorLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		response.setHeader("Access-Control-Allow-Origin", "http://39.97.237.96:8081");
 		String username = request.getParameter("username");//获取前端参数
 		String password = request.getParameter("password");//获取前端参数
-
-String userIpAddr = request.getRemoteAddr();
-System.out.println("***用户客户端的IP地址："+userIpAddr);
-
-		LoginService loginService = new LoginService();
+		System.out.println(username+password);
+		AdministratorLoginService administratorLoginService = new AdministratorLoginService();
 		PrintWriter out = response.getWriter();
-		if(loginService.login(username,password) == 0) {
-			out.write("successful");
+		if(administratorLoginService.administratorLogin(username,password) == 0) {
+			out.write(username);
 		}else {
 			out.write("failed");
 		}

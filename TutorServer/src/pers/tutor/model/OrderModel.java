@@ -10,7 +10,15 @@ public class OrderModel {
 	private String student_address;
 	private int student_id;
 	private String student_name;
+	private int demand_id;
 	
+	
+	public int getDemand_id() {
+		return demand_id;
+	}
+	public void setDemand_id(int demand_id) {
+		this.demand_id = demand_id;
+	}
 	public String getStudent_name() {
 		return student_name;
 	}

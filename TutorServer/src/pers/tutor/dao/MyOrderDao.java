@@ -57,7 +57,7 @@ public class MyOrderDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+			System.out.println(list.size());
 		return list;
 	}
 

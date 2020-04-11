@@ -153,17 +153,22 @@
 					var codeName = $("#code").val();
 					var password = $("#pwd").val();
 					$.ajax({
-						url:"/HospitalSystem/login",
-						type:"get",
-						dataType:"JSON",
+						url:"http://39.97.237.96:8081/TutorServer/AdministratorLogin",
+						type:"POST",
+
+						//dataType:"JSON",
 						data:{
-							code:codeName,
-							pwd:password
+							username:codeName,
+							password:password
 						},
-						error:function(){
+
+						error:function(e){
+
+							console.info(e);
 						},
 						success:function(e){
-							if(e == 'error'){
+							console.info(e);
+							if(e == 'failed'){
 								//当登录错误时
 								
 								alert("账号或密码错误！");
@@ -183,7 +188,8 @@
 								//console.info(e.id);
 								//如果返回式JSON格式的字符串则用eval（）函数转换
 								//var data = eval("("+e+")");
-								window.location.href="zhenduan.html?id="+e.id;
+								window.location.href="manage.html?id="+e;
+								
 							}
 							//在控制台输出
 						}

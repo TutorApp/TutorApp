@@ -9,34 +9,40 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import pers.tutor.service.LoginService;
-
+import pers.tutor.service.DeleteUserService;
 
 /**
  * @author YangSen
  * @author 作者 E-mail:	ysen_top@163.com
- * @version 创建时间		2020年3月20日 下午2:07:19
-    * 类说明	用户登录系统表示层
+ * @version 创建时间		2020年4月6日 下午9:20:17
+    * 类说明	管理员删除用户表示层
  */
-
-@WebServlet("/Login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/DeleteUser")
+public class DeleteUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String username = request.getParameter("username");//获取前端参数
-		String password = request.getParameter("password");//获取前端参数
 
-String userIpAddr = request.getRemoteAddr();
-System.out.println("***用户客户端的IP地址："+userIpAddr);
-
-		LoginService loginService = new LoginService();
+		response.setHeader("Access-Control-Allow-Origin", "http://39.97.237.96:8081");
+		int id = Integer.parseInt(request.getParameter("id"));
+		
+//		System.out.println(username+" "+password+" "+sex+" "+age+" "+type+" "+phone);
+		DeleteUserService deleteUserService = new DeleteUserService();
+//		UserEntity userEntity = new UserEntity();
+//		userEntity.setUsername(username);
+//		userEntity.setPassword(password);
+//		userEntity.setAge(age);
+//		userEntity.setSex(sex);
+//		userEntity.setPhone(phone);
+//		userEntity.setType(type);
+		
 		PrintWriter out = response.getWriter();
-		if(loginService.login(username,password) == 0) {
-			out.write("successful");
+		int result = deleteUserService.deleteUser(id);
+		if(result == 1) {
+			out.write("0");
 		}else {
-			out.write("failed");
+			out.write("-1");
 		}
 		out.flush();
 		out.close();

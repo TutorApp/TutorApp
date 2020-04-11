@@ -10,8 +10,43 @@ public class UserEntity {
 	private String username;
 	private String password;
 	private int type;
+	private String phone;
+	private int sex;
+	private int age;
+	private String net_name;
+	private String address;
 	
-	
+		
+	public String getNet_name() {
+		return net_name;
+	}
+	public void setNet_name(String net_name) {
+		this.net_name = net_name;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public int getSex() {
+		return sex;
+	}
+	public void setSex(int sex) {
+		this.sex = sex;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
 	public int getType() {
 		return type;
 	}

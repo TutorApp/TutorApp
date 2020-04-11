@@ -22,8 +22,16 @@ public class OrderEntity {
 	private String start_time;
 	private String end_time;
 	private String date;
+	private int demand_id;
 	
 	
+	
+	public int getDemand_id() {
+		return demand_id;
+	}
+	public void setDemand_id(int demand_id) {
+		this.demand_id = demand_id;
+	}
 	public int getId() {
 		return id;
 	}

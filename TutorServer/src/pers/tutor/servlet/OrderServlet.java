@@ -3,6 +3,8 @@ package pers.tutor.servlet;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.concurrent.ThreadPoolExecutor;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +16,7 @@ import com.alibaba.fastjson.JSONObject;
 import pers.tutor.entity.DemandEntity;
 import pers.tutor.model.OrderModel;
 import pers.tutor.service.OrderService;
+import pers.tutor.util.AutoRefuseUntil;
 
 
 /**
@@ -61,8 +64,12 @@ public class OrderServlet extends HttpServlet {
 			
 			int result = orderService.order(orderModel,demandEntity);
 			
-			if(result == 0) {
+			if(result != -1) {
 				out.write("successful");
+				ThreadPoolExecutor executor = AutoRefuseUntil.executor;
+				AutoRefuseUntil myTask = new AutoRefuseUntil();
+				myTask.SetId(result,json.getInteger("id"));
+				executor.execute(myTask);
 			}else {
 				out.write("failed");
 			}

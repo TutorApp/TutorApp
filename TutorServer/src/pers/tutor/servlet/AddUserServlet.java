@@ -9,34 +9,47 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import pers.tutor.service.LoginService;
-
+import pers.tutor.entity.UserEntity;
+import pers.tutor.service.AddUserService;
 
 /**
  * @author YangSen
  * @author 作者 E-mail:	ysen_top@163.com
- * @version 创建时间		2020年3月20日 下午2:07:19
-    * 类说明	用户登录系统表示层
+ * @version 创建时间		2020年4月5日 下午11:05:01
+    * 类说明	管理员添加用户表示层
  */
-
-@WebServlet("/Login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/AddUser")
+public class AddUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		response.setHeader("Access-Control-Allow-Origin", "http://39.97.237.96:8081");
 		String username = request.getParameter("username");//获取前端参数
 		String password = request.getParameter("password");//获取前端参数
-
-String userIpAddr = request.getRemoteAddr();
-System.out.println("***用户客户端的IP地址："+userIpAddr);
-
-		LoginService loginService = new LoginService();
+		int sex = Integer.parseInt(request.getParameter("sex"));
+		int age = Integer.parseInt(request.getParameter("age"));
+		int type = Integer.parseInt(request.getParameter("type"));
+		String phone = request.getParameter("phone");
+		
+//		System.out.println(username+" "+password+" "+sex+" "+age+" "+type+" "+phone);
+		AddUserService addUserService = new AddUserService();
+		UserEntity userEntity = new UserEntity();
+		userEntity.setUsername(username);
+		userEntity.setPassword(password);
+		userEntity.setAge(age);
+		userEntity.setSex(sex);
+		userEntity.setPhone(phone);
+		userEntity.setType(type);
+		
 		PrintWriter out = response.getWriter();
-		if(loginService.login(username,password) == 0) {
-			out.write("successful");
+		int result = addUserService.addUser(userEntity);
+		if(result == 1) {
+			out.write("0");
+		}else if(result == -1){
+			out.write("1");
 		}else {
-			out.write("failed");
+			out.write("-1");
 		}
 		out.flush();
 		out.close();

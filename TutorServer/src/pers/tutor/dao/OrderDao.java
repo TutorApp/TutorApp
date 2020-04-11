@@ -44,12 +44,14 @@ public class OrderDao {
 		
 		Connection connection = DBUtil.getConnection();//创建连接
 		String sql = "INSERT`order` (`subject`, `grade`,`teacher_name`,`teacher_phone`, `teacher_id`,`state`, `salary`,`teacher_address`,`other`," + 
-				"`start_time`,`end_time`,`date`,`student_id`,`student_phone`,`student_address`,`student_name`)VALUES (?,?,?, ?,?, ?, ?,?, ?, ?,?, ?, ?,?, ?, ?)";
+				"`start_time`,`end_time`,`date`,`student_id`,`student_phone`,`student_address`,`student_name`,`demand_id`)VALUES (?,?,?,?, ?,?, ?, ?,?, ?, ?,?, ?, ?,?, ?, ?)";
 		String sql1 = "UPDATE demand SET state = 2 WHERE id = ?";//SQL增加语句
+		String sql2 = "SELECT @@IDENTITY";
 		
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			PreparedStatement pre = connection.prepareStatement(sql1);
+			PreparedStatement p = connection.prepareStatement(sql2);
 			pre.setInt(1, demandEntity.getId());
 			preparedStatement.setString(1, demandEntity.getSubject());
 			preparedStatement.setString(2,demandEntity.getGrade());
@@ -67,13 +69,19 @@ public class OrderDao {
 			preparedStatement.setString(14,orderModel.getStudent_phone());
 			preparedStatement.setString(15, orderModel.getStudent_address());
 			preparedStatement.setString(16,orderModel.getStudent_name());
+			preparedStatement.setInt(17, demandEntity.getId());
 			
 			
 			int result = preparedStatement.executeUpdate();
 			int re = pre.executeUpdate();
+			ResultSet resultSet = p.executeQuery();
+			int id = 0;
+			while(resultSet.next()) {
+				id = resultSet.getInt("@@IDENTITY");
+			}
 			connection.close();
 			if(result == 1 && re != 0) {
-				return 0;
+				return id;
 			}else {
 				return -1;
 			}
@@ -118,5 +126,36 @@ public class OrderDao {
 		return demandEntity;
 	}
 
+	public void autoRefuse(int id,int demand_id) {
+		Connection connection = DBUtil.getConnection();//创建连接
+		
+		String sql = "SELECT state from `order` WHERE id=?";//sql查询语句
+		//创建数据库操作
+
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			//传递参数
+			preparedStatement.setInt(1,id);
+			//执行SQL
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while(resultSet.next()) {
+				int result = Integer.parseInt(resultSet.getString("state"));
+				if(result == 2) {
+					sql = "UPDATE `order` SET state = 5 WHERE id=?";
+					String sql1 = "UPDATE `demand` SET state = 1 WHERE id=?";
+					preparedStatement = connection.prepareStatement(sql);
+					PreparedStatement preparedStatement1 = connection.prepareStatement(sql1);
+					preparedStatement.setInt(1, id);
+					preparedStatement1.setInt(1, demand_id);
+					preparedStatement.executeUpdate();
+					preparedStatement1.executeUpdate();
+					
+				}
+			}
+			connection.close();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

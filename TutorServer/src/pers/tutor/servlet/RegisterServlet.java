@@ -29,6 +29,7 @@ public class RegisterServlet extends HttpServlet {
 		String password = request.getParameter("password");//获取前端参数
 		String  usertype = request.getParameter("type");//获取前端参数
 		int type = Integer.parseInt(usertype);
+
 		
 		//装载数据
 		UserEntity studentEntity = new UserEntity();
@@ -39,9 +40,9 @@ public class RegisterServlet extends HttpServlet {
 		
 		int result = studentRegister_service.register(studentEntity);
 		PrintWriter out = response.getWriter();
-		if(result == 0) {
+		if(result == 1) {
 			out.write("successful");
-		}else if(result == 2){
+		}else if(result == -2){
 			out.write("exist");
 		}else {
 			out.write("failed");

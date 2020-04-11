@@ -11,33 +11,32 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.fastjson.JSONObject;
-
-import pers.tutor.entity.OrderEntity;
-import pers.tutor.service.MyOrderService;
-
+import pers.tutor.entity.UserEntity;
+import pers.tutor.service.GetUserService;
 
 /**
  * @author YangSen
  * @author 作者 E-mail:	ysen_top@163.com
- * @version 创建时间		2020年4月2日 下午3:33:31
-    * 类说明   	查看订单表示层
+ * @version 创建时间		2020年4月5日 下午5:32:54
+    * 类说明	管理员获取用户信息表示层
  */
-@WebServlet("/MyOrder")
-public class MyOrderServlet extends HttpServlet {
+@WebServlet("/GetUser")
+public class GetUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		String username = request.getParameter("username");
 		
-		MyOrderService myOrderService = new MyOrderService();
-		int id = myOrderService.getUserId(username);
-		List<OrderEntity> orderList = myOrderService.getMyOrder(id);
+		response.setHeader("Access-Control-Allow-Origin", "http://39.97.237.96:8081");
+		int type = Integer.parseInt(request.getParameter("type"));
+
+		GetUserService getUserService = new GetUserService();
+		List<UserEntity> list = getUserService.getUser(type);
+		
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
-		System.out.println(orderList.size());
-		if(orderList.size() != 0) {
-			String jsonstr = JSONObject.toJSONString(orderList);
+		if(list.size() != 0) {
+			String jsonstr = JSONObject.toJSONString(list);
 			out.write(jsonstr);
 		}else {
 			out.write("failed");
@@ -45,9 +44,12 @@ public class MyOrderServlet extends HttpServlet {
 		
 		out.flush();
 		out.close();
-
+		
 	}
+
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		doGet(request, response);
 	}
 
