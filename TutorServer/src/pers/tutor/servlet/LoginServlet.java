@@ -10,13 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pers.tutor.service.LoginService;
+import pers.tutor.service.impl.LoginServiceImpl;
 
 
 /**
  * @author YangSen
  * @author 作者 E-mail:	ysen_top@163.com
  * @version 创建时间		2020年3月20日 下午2:07:19
-    * 类说明	用户登录系统表示层
+    * 类说明	用户登录请求和响应处理
  */
 
 @WebServlet("/Login")
@@ -31,7 +32,9 @@ public class LoginServlet extends HttpServlet {
 String userIpAddr = request.getRemoteAddr();
 System.out.println("***用户客户端的IP地址："+userIpAddr);
 
-		LoginService loginService = new LoginService();
+
+
+		LoginService loginService = new LoginServiceImpl();
 		PrintWriter out = response.getWriter();
 		if(loginService.login(username,password) == 0) {
 			out.write("successful");

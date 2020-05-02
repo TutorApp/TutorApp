@@ -13,6 +13,7 @@ import com.alibaba.fastjson.JSONObject;
 
 import pers.tutor.entity.EvaluateEntity;
 import pers.tutor.service.EvaluateService;
+import pers.tutor.service.impl.EvaluateServiceImpl;
 
 /**
  * Servlet implementation class ReleaseOrderServlet
@@ -21,7 +22,7 @@ import pers.tutor.service.EvaluateService;
  * @author YangSen
  * @author 作者 E-mail:	ysen_top@163.com
  * @version 创建时间		2020年3月21日 下午5:07:34
-    * 类说明	评价表示层
+    * 类说明	评价请求和响应处理
  */
 @WebServlet("/Evaluate")
 public class EvaluateServlet extends HttpServlet {
@@ -46,7 +47,7 @@ public class EvaluateServlet extends HttpServlet {
 		JSONObject json = new JSONObject();
 		json = JSONObject.parseObject(jb.toString());
 		
-		EvaluateService evaluateService = new EvaluateService();
+		EvaluateService evaluateService = new EvaluateServiceImpl();
 		EvaluateEntity evaluateEntity = new EvaluateEntity();
 		
 		evaluateEntity.setEvaluation(json.getString("evaluation"));

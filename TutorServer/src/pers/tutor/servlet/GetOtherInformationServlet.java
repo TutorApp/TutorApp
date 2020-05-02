@@ -17,12 +17,13 @@ import com.alibaba.fastjson.JSONObject;
 import pers.tutor.entity.EvaluateEntity;
 import pers.tutor.entity.UserEntity;
 import pers.tutor.service.GetOtherInformationService;
+import pers.tutor.service.impl.GetOtherInformationServiceImpl;
 
 /**
  * @author YangSen
  * @author 作者 E-mail:	ysen_top@163.com
  * @version 创建时间		2020年4月8日 下午1:42:40
-    * 类说明	获取他人个人信息表示层
+    * 类说明	获取他人个人信息请求和响应处理
  */
 @WebServlet("/GetOtherInformation")
 public class GetOtherInformationServlet extends HttpServlet {
@@ -31,7 +32,7 @@ public class GetOtherInformationServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int id = Integer.parseInt(request.getParameter("id"));//获取前端参数
-		GetOtherInformationService getOtherInformation = new GetOtherInformationService();
+		GetOtherInformationService getOtherInformation = new GetOtherInformationServiceImpl();
 		response.setCharacterEncoding("utf-8");
 		List<String> list = new ArrayList<>();
 		List<EvaluateEntity> list1 = getOtherInformation.getEvaluation(id);

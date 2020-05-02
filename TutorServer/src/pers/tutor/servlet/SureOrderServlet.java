@@ -9,13 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pers.tutor.service.SureOrderService;
+import pers.tutor.service.impl.SureOrderServiceImpl;
 
 
 /**
  * @author YangSen
  * @author 作者 E-mail:	ysen_top@163.com
  * @version 创建时间		2020年3月21日 下午5:07:34
-    * 类说明	教师用户确认订单表示层
+    * 类说明	教师用户确认订单请求和响应处理
  */
 
 @WebServlet("/SureOrder")
@@ -26,7 +27,7 @@ public class SureOrderServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		int id = Integer.parseInt(request.getParameter("id"));
 		
-		SureOrderService sureOrderService = new SureOrderService();
+		SureOrderService sureOrderService = new SureOrderServiceImpl();
 		int result = sureOrderService.sureOrder(id);
 		PrintWriter out = response.getWriter();
 		

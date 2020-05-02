@@ -50,5 +50,11 @@ public class OrderModel {
 	public void setStudent_id(int student_id) {
 		this.student_id = student_id;
 	}
+	
+	@Override
+	public String toString() {
+		return "OrderModel [id=" + id + ", student_phone=" + student_phone + ", student_address=" + student_address
+				+ ", student_id=" + student_id + ", student_name=" + student_name + ", demand_id=" + demand_id + "]";
+	}
 
 }

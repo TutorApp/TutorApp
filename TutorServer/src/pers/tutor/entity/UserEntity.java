@@ -71,7 +71,12 @@ public class UserEntity {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-
 	
+	@Override
+	public String toString() {
+		return "UserEntity [id=" + id + ", username=" + username + ", password=" + password + ", type=" + type
+				+ ", phone=" + phone + ", sex=" + sex + ", age=" + age + ", net_name=" + net_name + ", address="
+				+ address + "]";
+	}
+
 }

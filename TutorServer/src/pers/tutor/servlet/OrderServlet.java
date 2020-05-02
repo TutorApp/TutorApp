@@ -16,6 +16,7 @@ import com.alibaba.fastjson.JSONObject;
 import pers.tutor.entity.DemandEntity;
 import pers.tutor.model.OrderModel;
 import pers.tutor.service.OrderService;
+import pers.tutor.service.impl.OrderServiceImpl;
 import pers.tutor.util.AutoRefuseUntil;
 
 
@@ -23,7 +24,7 @@ import pers.tutor.util.AutoRefuseUntil;
  * @author YangSen
  * @author 作者 E-mail:	ysen_top@163.com
  * @version 创建时间		2020年3月21日 下午5:07:34
-    * 类说明	教师用户发布教学信息表示层
+    * 类说明	教师用户发布教学信息请求和响应处理
  */
 
 @WebServlet("/Order")
@@ -47,7 +48,7 @@ public class OrderServlet extends HttpServlet {
 		JSONObject json = new JSONObject();
 		json = JSONObject.parseObject(jb.toString());
 		
-		OrderService orderService = new OrderService();
+		OrderService orderService = new OrderServiceImpl();
 		OrderModel orderModel = new OrderModel();
 		DemandEntity demandEntity = new DemandEntity();
 		demandEntity = orderService.demandInfo(json.getIntValue("id"));

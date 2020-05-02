@@ -2,7 +2,7 @@ package pers.tutor.entity;
 /**
 * @author 作者 E-mail:	ysen_top@163.com
 * @version 创建时间		2020年4月5日 下午3:42:44
-* 类说明
+* 类说明	管理员
 */
 public class AdministratorEntity {
 	private int id;
@@ -34,4 +34,11 @@ public class AdministratorEntity {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	@Override
+	public String toString() {
+		return "AdministratorEntity [id=" + id + ", username=" + username + ", password=" + password + ", name=" + name
+				+ "]";
+	}
+	
 }

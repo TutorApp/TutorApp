@@ -102,4 +102,12 @@ public class DemandEntity {
 		this.end_time = end_time;
 	}
 	
+	@Override
+	public String toString() {
+		return "DemandEntity [id=" + id + ", subject=" + subject + ", grade=" + grade + ", name=" + name
+				+ ", teacher_phone=" + teacher_phone + ", teacher_id=" + teacher_id + ", state=" + state + ", salary="
+				+ salary + ", teacher_address=" + teacher_address + ", other=" + other + ", start_time=" + start_time
+				+ ", end_time=" + end_time + ", date=" + date + "]";
+	}
+	
 }

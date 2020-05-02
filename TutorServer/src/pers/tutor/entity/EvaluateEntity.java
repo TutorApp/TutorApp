@@ -35,4 +35,10 @@ public class EvaluateEntity {
 	public void setEvaluation(String evaluation) {
 		this.evaluation = evaluation;
 	}
+	@Override
+	public String toString() {
+		return "EvaluateEntity [id=" + id + ", user_id=" + user_id + ", who_id=" + who_id + ", evaluation=" + evaluation
+				+ "]";
+	}
+	
 }

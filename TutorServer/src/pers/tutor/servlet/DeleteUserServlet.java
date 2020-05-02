@@ -10,12 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pers.tutor.service.DeleteUserService;
+import pers.tutor.service.impl.DeleteUserServiceImpl;
 
 /**
  * @author YangSen
  * @author 作者 E-mail:	ysen_top@163.com
  * @version 创建时间		2020年4月6日 下午9:20:17
-    * 类说明	管理员删除用户表示层
+    * 类说明	管理员删除用户请求和响应处理
  */
 @WebServlet("/DeleteUser")
 public class DeleteUserServlet extends HttpServlet {
@@ -27,15 +28,7 @@ public class DeleteUserServlet extends HttpServlet {
 		response.setHeader("Access-Control-Allow-Origin", "http://39.97.237.96:8081");
 		int id = Integer.parseInt(request.getParameter("id"));
 		
-//		System.out.println(username+" "+password+" "+sex+" "+age+" "+type+" "+phone);
-		DeleteUserService deleteUserService = new DeleteUserService();
-//		UserEntity userEntity = new UserEntity();
-//		userEntity.setUsername(username);
-//		userEntity.setPassword(password);
-//		userEntity.setAge(age);
-//		userEntity.setSex(sex);
-//		userEntity.setPhone(phone);
-//		userEntity.setType(type);
+		DeleteUserService deleteUserService = new DeleteUserServiceImpl();
 		
 		PrintWriter out = response.getWriter();
 		int result = deleteUserService.deleteUser(id);

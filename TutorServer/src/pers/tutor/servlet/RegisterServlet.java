@@ -11,12 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import pers.tutor.entity.UserEntity;
 import pers.tutor.service.RegisterService;
+import pers.tutor.service.impl.RegisterServiceImpl;
 
 /**
  * @author YangSen
  * @author 作者 E-mail:	ysen_top@163.com
  * @version 创建时间		2020年3月20日 下午4:49:48
-    * 类说明	用户注册表示层
+    * 类说明	用户注册请求和响应处理
  */
 @WebServlet("/Register")
 public class RegisterServlet extends HttpServlet {
@@ -33,7 +34,7 @@ public class RegisterServlet extends HttpServlet {
 		
 		//装载数据
 		UserEntity studentEntity = new UserEntity();
-		RegisterService studentRegister_service = new RegisterService();
+		RegisterService studentRegister_service = new RegisterServiceImpl();
 		studentEntity.setUsername(username);
 		studentEntity.setPassword(password);
 		studentEntity.setType(type);

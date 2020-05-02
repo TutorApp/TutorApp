@@ -2,7 +2,6 @@ package pers.tutor.service;
 
 import java.util.List;
 
-import pers.tutor.dao.DemandListDao;
 import pers.tutor.entity.DemandEntity;
 
 /**
@@ -10,12 +9,8 @@ import pers.tutor.entity.DemandEntity;
 * @version 创建时间		2020年3月21日 下午5:09:46
 * 类说明	学生用户获取教学信息列表逻辑处理层
 */
-public class DemandListService {
+public interface DemandListService {
 
-	public List<DemandEntity> demandList() {
-		
-		DemandListDao demandListDao = new DemandListDao();
-		return demandListDao.demandList();
-	}
+	public List<DemandEntity> demandList();
 
 }

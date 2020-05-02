@@ -14,12 +14,13 @@ import com.alibaba.fastjson.JSONObject;
 
 import pers.tutor.entity.DemandEntity;
 import pers.tutor.service.MyReleaseService;
+import pers.tutor.service.impl.MyReleaseServiceImpl;
 
 /**
  * @author YangSen
  * @author 作者 E-mail:	ysen_top@163.com
  * @version 创建时间		2020年4月7日 下午8:49:36
-    * 类说明	教师用户查看已发布的教学信息表示层
+    * 类说明	教师用户查看已发布的教学信息请求和响应处理
  */
 @WebServlet("/MyRelease")
 public class MyReleaseServlet extends HttpServlet {
@@ -29,7 +30,7 @@ public class MyReleaseServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String username = request.getParameter("username");
 		
-		MyReleaseService myReleaseService = new MyReleaseService();
+		MyReleaseService myReleaseService = new MyReleaseServiceImpl();
 		int id = myReleaseService.getUserId(username);
 		List<DemandEntity> list = myReleaseService.getMyRelease(id);
 		response.setCharacterEncoding("utf-8");

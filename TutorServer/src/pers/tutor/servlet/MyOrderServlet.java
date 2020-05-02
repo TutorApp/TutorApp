@@ -14,13 +14,14 @@ import com.alibaba.fastjson.JSONObject;
 
 import pers.tutor.entity.OrderEntity;
 import pers.tutor.service.MyOrderService;
+import pers.tutor.service.impl.MyOrderServiceImpl;
 
 
 /**
  * @author YangSen
  * @author 作者 E-mail:	ysen_top@163.com
  * @version 创建时间		2020年4月2日 下午3:33:31
-    * 类说明   	查看订单表示层
+    * 类说明   	查看订单请求和响应处理
  */
 @WebServlet("/MyOrder")
 public class MyOrderServlet extends HttpServlet {
@@ -30,7 +31,7 @@ public class MyOrderServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String username = request.getParameter("username");
 		
-		MyOrderService myOrderService = new MyOrderService();
+		MyOrderService myOrderService = new MyOrderServiceImpl();
 		int id = myOrderService.getUserId(username);
 		List<OrderEntity> orderList = myOrderService.getMyOrder(id);
 		response.setCharacterEncoding("utf-8");

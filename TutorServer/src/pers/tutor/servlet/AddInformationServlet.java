@@ -14,12 +14,13 @@ import com.alibaba.fastjson.JSONObject;
 
 import pers.tutor.entity.UserEntity;
 import pers.tutor.service.AddInformationService;
+import pers.tutor.service.impl.AddInformationServiceImpl;
 
 /**
  * @author YangSen
  * @author 作者 E-mail:	ysen_top@163.com
  * @version 创建时间		2020年4月4日 下午10:25:42
-    * 类说明	用户维护个人信息表示层
+    * 类说明	用户维护个人信息请求和响应处理
  */
 @WebServlet("/AddInformation")
 public class AddInformationServlet extends HttpServlet {
@@ -55,7 +56,7 @@ public class AddInformationServlet extends HttpServlet {
 		studentEntity.setAddress(json.getString("address"));
 		studentEntity.setNet_name(json.getString("net_name"));
 		
-		AddInformationService addInformationService = new AddInformationService();
+		AddInformationService addInformationService = new AddInformationServiceImpl();
 		int result = addInformationService.addInformation(studentEntity);
 		PrintWriter out = response.getWriter();
 		if(result == 0) {

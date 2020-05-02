@@ -5,6 +5,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 import pers.tutor.dao.OrderDao;
+import pers.tutor.dao.Impl.OrderDaoImpl;
 
 /**
  * @author YangSen
@@ -30,7 +31,7 @@ public class AutoRefuseUntil implements Runnable {
 				try {
 					// sleep()：同步延迟数据，并且会阻塞线程
 					Thread.sleep(timeInterval);
-					OrderDao orderDao = new OrderDao();
+					OrderDao orderDao = new OrderDaoImpl();
 					orderDao.autoRefuse(id,demand_id);
 				} catch (InterruptedException e) {
 					e.printStackTrace();

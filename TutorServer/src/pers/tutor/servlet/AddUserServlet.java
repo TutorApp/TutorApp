@@ -11,12 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import pers.tutor.entity.UserEntity;
 import pers.tutor.service.AddUserService;
+import pers.tutor.service.impl.AddUserServiceImpl;
 
 /**
  * @author YangSen
  * @author 作者 E-mail:	ysen_top@163.com
  * @version 创建时间		2020年4月5日 下午11:05:01
-    * 类说明	管理员添加用户表示层
+    * 类说明	管理员添加用户请求和响应处理
  */
 @WebServlet("/AddUser")
 public class AddUserServlet extends HttpServlet {
@@ -33,7 +34,7 @@ public class AddUserServlet extends HttpServlet {
 		String phone = request.getParameter("phone");
 		
 //		System.out.println(username+" "+password+" "+sex+" "+age+" "+type+" "+phone);
-		AddUserService addUserService = new AddUserService();
+		AddUserService addUserService = new AddUserServiceImpl();
 		UserEntity userEntity = new UserEntity();
 		userEntity.setUsername(username);
 		userEntity.setPassword(password);

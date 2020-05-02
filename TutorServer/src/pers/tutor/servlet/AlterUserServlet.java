@@ -11,12 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import pers.tutor.entity.UserEntity;
 import pers.tutor.service.AlterUserService;
+import pers.tutor.service.impl.AlterUserServiceImpl;
 
 /**
  * @author YangSen
  * @author 作者 E-mail:	ysen_top@163.com
  * @version 创建时间		2020年4月7日 下午3:30:06
-    * 类说明	管理员修改用户表示层
+    * 类说明	管理员修改用户请求和响应处理
  */
 @WebServlet("/AlterUser")
 public class AlterUserServlet extends HttpServlet {
@@ -47,7 +48,7 @@ public class AlterUserServlet extends HttpServlet {
 		studentEntity.setAddress(address);
 		studentEntity.setNet_name(net_name);
 		
-		AlterUserService alterUserService = new AlterUserService();
+		AlterUserService alterUserService = new AlterUserServiceImpl();
 		int result = alterUserService.alterUser(studentEntity);
 		PrintWriter out = response.getWriter();
 		if(result == 0) {

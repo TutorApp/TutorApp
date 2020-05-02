@@ -1,6 +1,6 @@
 package pers.tutor.service;
 
-import pers.tutor.dao.CancelOrderDao;
+
 
 /**
  * @author YangSen
@@ -8,11 +8,8 @@ import pers.tutor.dao.CancelOrderDao;
  * @version 创建时间		2020年4月2日 下午8:21:55
     * 类说明 	学生用户取消订单逻辑处理层
  */
-public class CancelOrderService {
+public interface CancelOrderService {
 
-	public int cancelOrder(int id) {
-		CancelOrderDao cancelOrderDao = new CancelOrderDao();
-		return cancelOrderDao.cancelOrder(id);
-	}
+	public int cancelOrder(int id);
 
 }

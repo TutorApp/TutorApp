@@ -134,5 +134,15 @@ public class OrderEntity {
 	public void setEnd_time(String end_time) {
 		this.end_time = end_time;
 	}
+	@Override
+	public String toString() {
+		return "OrderEntity [id=" + id + ", subject=" + subject + ", grade=" + grade + ", teacher_name=" + teacher_name
+				+ ", student_name=" + student_name + ", teacher_phone=" + teacher_phone + ", student_phone="
+				+ student_phone + ", teacher_id=" + teacher_id + ", student_id=" + student_id + ", state=" + state
+				+ ", salary=" + salary + ", teacher_address=" + teacher_address + ", student_address=" + student_address
+				+ ", other=" + other + ", start_time=" + start_time + ", end_time=" + end_time + ", date=" + date
+				+ ", demand_id=" + demand_id + "]";
+	}
+	
 	
 }

@@ -9,13 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pers.tutor.service.CancelOrderService;
+import pers.tutor.service.impl.CancelOrderServiceImpl;
 
 
 /**
  * @author YangSen
  * @author 作者 E-mail:	ysen_top@163.com
  * @version 创建时间		2020年3月21日 下午5:07:34
-    * 类说明	学生用户取消订单表示层
+    * 类说明	学生用户取消订单请求和响应处理
  */
 
 @WebServlet("/CancelOrder")
@@ -26,7 +27,7 @@ public class CancelOrderServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		int id = Integer.parseInt(request.getParameter("id"));
 		
-		CancelOrderService cancelOrderService = new CancelOrderService();
+		CancelOrderService cancelOrderService = new CancelOrderServiceImpl();
 		int result = cancelOrderService.cancelOrder(id);
 		PrintWriter out = response.getWriter();
 		
