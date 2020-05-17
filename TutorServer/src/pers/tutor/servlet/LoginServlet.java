@@ -29,11 +29,6 @@ public class LoginServlet extends HttpServlet {
 		String username = request.getParameter("username");//获取前端参数
 		String password = request.getParameter("password");//获取前端参数
 
-String userIpAddr = request.getRemoteAddr();
-System.out.println("***用户客户端的IP地址："+userIpAddr);
-
-
-
 		LoginService loginService = new LoginServiceImpl();
 		PrintWriter out = response.getWriter();
 		if(loginService.login(username,password) == 0) {

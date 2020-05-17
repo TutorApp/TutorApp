@@ -28,7 +28,6 @@ public class GetUserServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		response.setHeader("Access-Control-Allow-Origin", "http://39.97.237.96:8081");
 		int type = Integer.parseInt(request.getParameter("type"));
 
 		GetUserService getUserService = new GetUserServiceImpl();

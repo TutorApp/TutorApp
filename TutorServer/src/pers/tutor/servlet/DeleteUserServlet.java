@@ -25,7 +25,6 @@ public class DeleteUserServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 
-		response.setHeader("Access-Control-Allow-Origin", "http://39.97.237.96:8081");
 		int id = Integer.parseInt(request.getParameter("id"));
 		
 		DeleteUserService deleteUserService = new DeleteUserServiceImpl();

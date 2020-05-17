@@ -25,7 +25,6 @@ public class AddUserServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		response.setHeader("Access-Control-Allow-Origin", "http://39.97.237.96:8081");
 		String username = request.getParameter("username");//获取前端参数
 		String password = request.getParameter("password");//获取前端参数
 		int sex = Integer.parseInt(request.getParameter("sex"));

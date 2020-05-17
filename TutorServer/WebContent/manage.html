@@ -318,7 +318,7 @@
 			$("#yes").click(function(){
 				if(id != ""){
 					$.ajax({
-						url:"http://39.97.237.96:8081/TutorServer/DeleteUser",
+						url:"http://localhost:8080/TutorApp/DeleteUser",
 						type:"post",
 						data:{
 							id:id
@@ -354,7 +354,7 @@
 			
 			if($("#administrator").val() != null){
 				$.ajax({
-					url:"http://39.97.237.96:8081/TutorServer/AddUser",
+					url:"http://localhost:8080/TutorApp/AddUser",
 					type:"post",
 					data:{
 						username:username,
@@ -389,6 +389,8 @@
 			}
 		})
 		
+		
+		
 		$("#alter1").click(function(){
 			var tr = $("#showData").children("tr").children("td").children("input[name='select']:checked");
 
@@ -417,22 +419,25 @@
 				$("#type2").val(type == 0?"教师":"学生");
 				$("#phone2").val(phone);
 				$("#address2").val(address);
-				
-				$("#alter").click(function(){
+					
+			
+		})
+		
+		$("#alter").click(function(){
 					
 					if(id == ""){		
 						alert("请选择用户");
 					}else{
-						id = $("#id2").val();
-						net_name = $("#net_name2").val();
-						username = $("#username2").val();
-						sex = $("#sex2").val();
-						age = $("#age2").val();
-						phone = $("#phone2").val();
-						address = $("#address2").val();
+						var id = $("#id2").val();
+						var net_name = $("#net_name2").val();
+						var username = $("#username2").val();
+						var sex = $("#sex2").val();
+						var age = $("#age2").val();
+						var phone = $("#phone2").val();
+						var address = $("#address2").val();
 	
 						$.ajax({
-							url:"http://39.97.237.96:8081/TutorServer/AlterUser",
+							url:"http://localhost:8080/TutorApp/AlterUser",
 							type:"post",
 							data:{
 								"id":id,
@@ -458,12 +463,8 @@
 						});
 					}
 				})
-			
-
-			
-			
-			
-		})
+		
+		
 		function fresh(){
 			var type = 0;
 				var str = $("#select").val();
@@ -474,7 +475,7 @@
 				}
 
 			$.ajax({
-				url:"http://39.97.237.96:8081/TutorServer/GetUser",
+				url:"http://localhost:8080/TutorApp/GetUser",
 				type:"get",
 				data:{
 					type:type
